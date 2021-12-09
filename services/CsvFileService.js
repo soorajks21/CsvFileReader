@@ -26,7 +26,7 @@ const readCsvFile = async (req, res) => {
         then(source => {
             if (source[0].date != '') {
                                     
-                for (let i = 1; i < source.length; i++) {
+                for (let i = 0; i < source.length; i++) {
                         
                     let row = {
                             
