@@ -58,5 +58,76 @@ const readCsvFile = async (req, res) => {
        
       
 
+const fetchEmployee = async (req, res, next) => {
 
-module.exports = { readCsvFile };
+
+    let employeeList = [];
+    let result = await getEmployees();
+    console.log(result.length);
+    try {
+
+        let key = '__express__'+  result.length + req.originalUrl || req.url;
+        let cachedBody = mcache.get(key);
+
+        if (cachedBody) {
+            return cachedBody;
+        }
+        else {
+        
+
+            
+
+            result.map((x) => {
+                let dateWorked = formatDate(x.workDate);
+                let startOfMonth = firstOfMonth(dateWorked);
+                let fifteenOfMonth = midOfMonth(dateWorked);
+                let semiOfMonth = sixteenthOfMonth(dateWorked);
+                let lastDayOfMonth = endOfMonth(dateWorked);
+                let amount = '';
+
+                let getPayRollDates = checkDate(dateWorked, startOfMonth, fifteenOfMonth, semiOfMonth, lastDayOfMonth);
+
+                let startPayDate = getPayRollDates[0];
+                let endPayDate = getPayRollDates[1];
+
+                switch (x.group) {
+                    case groupName.groupA: amount = totalAmount(payment.paymentOfA, x.hours);
+                        break;
+                    case groupName.groupB: amount = totalAmount(payment.paymentOfB, x.hours);
+                        break;
+                    default:
+                        throw x.group;
+        
+                }
+
+ 
+                let employeeDetails = getEmployeeDetails(x.employeeId, startPayDate, endPayDate, x.group, amount);
+
+
+                employeeList.push(employeeDetails);
+            });
+
+            const sortEmployeeList = getSortedEmployeeList(employeeList);
+
+
+
+
+            const employeeWithTotalAmt = getEmployeeWithTotalAmt(sortEmployeeList);
+
+            mcache.put(key, employeeWithTotalAmt);
+            return employeeWithTotalAmt;
+  
+        }
+    }
+    catch (err) {
+        const result = {
+            status: 'fail',
+            message: 'err' + err.message
+        }
+    }
+      
+   }
+   
+
+
+module.exports = { readCsvFile ,fetchEmployee };
