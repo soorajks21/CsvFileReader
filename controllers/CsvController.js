@@ -1,4 +1,4 @@
-const { readCsvFile , fetchEmployee } = require('../service/CsvFileService');
+const { readCsvFile , fetchEmployee } = require('../services/CsvFileService');
 
 
 

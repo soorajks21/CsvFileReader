@@ -63,7 +63,6 @@ const fetchEmployee = async (req, res, next) => {
 
     let employeeList = [];
     let result = await getEmployees();
-    console.log(result.length);
     try {
 
         let key = '__express__'+  result.length + req.originalUrl || req.url;
