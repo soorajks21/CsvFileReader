@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const upload = require('../config/multer.config');
+const upload = require('../../config/multer.config');
 
 const { uploadFile, getReport } = require('../controllers/CsvController');
 

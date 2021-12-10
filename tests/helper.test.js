@@ -1,6 +1,6 @@
 const { formatDate, firstOfMonth, midOfMonth,
     sixteenthOfMonth, endOfMonth,
-    getEmployeeWithTotalAmt, getFileId } = require('../utility/HelperFunctions');
+    getEmployeeWithTotalAmt, getFileId } = require('../src/utility/HelperFunctions');
 
 const { testData, FileName, Dates, convertedDates, amtCalculatedEmpList } = require('./fixtures/testData');
 

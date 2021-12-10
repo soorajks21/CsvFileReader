@@ -1,13 +1,9 @@
 const request = require('supertest');
-const fs = require('fs');
-const path = require('path')
-const app = require('../app')
-const Employee = require('../model/Employee')
-const Report = require('../model/Report')
-const { removeFile } = require('../utility/HelperFunctions')
-const pathDirectory = 'uploads';
-const filePath = '/' + pathDirectory + '/';
-const cwd = process.cwd();
+const app = require('../src/app')
+const Employee = require('../src/model/Employee')
+const Report = require('../src/model/Report')
+const { removeFile } = require('../src/utility/HelperFunctions')
+
 
 
 
