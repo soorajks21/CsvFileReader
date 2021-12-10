@@ -46,8 +46,8 @@ const readCsvFile = async (req, res) => {
             }
         }).catch((err) => err);
     if (hasData) {
-        await addReport(_id, uploadedTime);
-       const values = await insertEmployees(employees).then((data) => data);
+        await addReport(_id, uploadedTime).catch((err) => err);
+       const values = await insertEmployees(employees).then((data) => data).cathc((err) => err);
         return {sucess : true, body : values};  
     }
     else {
