@@ -26,11 +26,10 @@ const readCsvFile = async (req, res) => {
         fromFile(__basedir + "/uploads/" + req.file.filename).
         then(source => {
             if (source[0].date != '') {
-                                    
+                
                 for (let i = 0; i < source.length; i++) {
-                        
-                    let row = {
-                            
+                    
+                    let row = {                            
                         workDate: source[i].date,
                         hours: source[i].hours,
                         employeeId: source[i].employeeId,
@@ -47,7 +46,7 @@ const readCsvFile = async (req, res) => {
         }).catch((err) => err);
     if (hasData) {
         await addReport(_id, uploadedTime).catch((err) => err);
-       const values = await insertEmployees(employees).then((data) => data).cathc((err) => err);
+       const values = await insertEmployees(employees).then((data) => data).catch((err) => err);
         return {sucess : true, body : values};  
     }
     else {
