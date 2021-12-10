@@ -72,10 +72,6 @@ const fetchEmployee = async (req, res, next) => {
             return cachedBody;
         }
         else {
-        
-
-            
-
             result.map((x) => {
                 let dateWorked = formatDate(x.workDate);
                 let startOfMonth = firstOfMonth(dateWorked);
