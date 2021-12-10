@@ -12,6 +12,7 @@ When application started
 
 
 Can upload the csv file through : http://localhost:3000/api/file/upload
+Can fetch payroll report from : http://localhost:3000/api/report
 -- Open postman
 -- Select body and choose form-data
 -- Add key = file and select the file to the values
